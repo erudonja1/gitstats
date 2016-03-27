@@ -102,22 +102,29 @@ class ContentService {
     class func getProgressContent(tab: Int, index: Int) -> Int{
         switch tab {
         case 0:
-            let maxPerDay = StatsService.days[index].hourStatistics.reduce(0,combine: {$0 + $1.value})
-            let max = StatsService.days.reduce(0,combine: {$0 + $1.hourStatistics.reduce(0,combine: {$0 + $1.value})})
-            return (max/maxPerDay)
+            return StatsService.days[index].hourStatistics.reduce(0,combine: {$0 + $1.value})
         case 1:
-            let maxPerWeek = StatsService.weeks[index].weekDayStatistics.reduce(0,combine: {$0 + $1.value})
-            let max = StatsService.weeks.reduce(0,combine: {$0 + $1.weekDayStatistics.reduce(0,combine: {$0 + $1.value})})
-            return (max/maxPerWeek)
+            return StatsService.weeks[index].weekDayStatistics.reduce(0,combine: {$0 + $1.value})
         case 2:
-            let maxPerMonth = StatsService.months[index].dayStatistics.reduce(0,combine: {$0 + $1.value})
-            let max = StatsService.months.reduce(0,combine: {$0 + $1.dayStatistics.reduce(0,combine: {$0 + $1.value})})
-            return (max/maxPerMonth)
+            return StatsService.months[index].dayStatistics.reduce(0,combine: {$0 + $1.value})
         default:
             print("Error getting progress number")
             return 0
         }
-
+    }
+    class func getTotalContent(tab: Int) -> Int{
+        switch tab {
+        case 0:
+            return StatsService.days.reduce(0,combine: {$0 + $1.hourStatistics.reduce(0,combine: {$0 + $1.value})})
+        case 1:
+            return StatsService.weeks.reduce(0,combine: {$0 + $1.weekDayStatistics.reduce(0,combine: {$0 + $1.value})})
+        case 2:
+            return StatsService.months.reduce(0,combine: {$0 + $1.dayStatistics.reduce(0,combine: {$0 + $1.value})})
+        default:
+            print("Error getting progress number")
+            return 0
+        }
+        
     }
     class func getNameContent(tab: Int, index: Int) -> String{
         switch tab {
@@ -131,26 +138,5 @@ class ContentService {
             print("Error getting name for statistics")
             return ""
         }
-    }
-    class func getTotalContent(tab: Int, index: Int) -> Int{
-        switch tab {
-        case 0:
-            let max = StatsService.days.reduce(0,combine: {$0 + $1.hourStatistics.reduce(0,combine: {$0 + $1.value})})
-            return max
-        case 1:
-            let max = StatsService.weeks.reduce(0,combine: {$0 + $1.weekDayStatistics.reduce(0,combine: {$0 + $1.value})})
-            return max
-        case 2:
-            let max = StatsService.months.reduce(0,combine: {$0 + $1.dayStatistics.reduce(0,combine: {$0 + $1.value})})
-            return max
-        default:
-            print("Error getting total number for statistics")
-            return 0
-        }
-    }
-    
-    
-    
-    
-    
+    }  
 }

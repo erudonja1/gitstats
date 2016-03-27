@@ -46,6 +46,7 @@ class StatsService {
                         weeks.append(week)
                     }
                     updateMonths()
+                    weeks = weeks.reverse()
                     completionHandler(true, "")
                 }
                 else {

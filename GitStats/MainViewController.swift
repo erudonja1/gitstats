@@ -161,18 +161,18 @@ class MainViewController: UIViewController, ChartViewDelegate{
         self.statisticsDate.text = ContentService.getDateContent(segmentControl.selectedIndex, index: ContentService.selectedIndex)
         self.statisticsDescription.text = ContentService.getDescriptionContent(segmentControl.selectedIndex)
         self.statisticsName.text = ContentService.getNameContent(segmentControl.selectedIndex, index: ContentService.selectedIndex)
-        let total = ContentService.getProgressContent(segmentControl.selectedIndex, index: ContentService.selectedIndex)
-        
-        let fractionalProgress = (Float(total) * 100.00) / Float(ContentService.getTotalContent(segmentControl.selectedIndex, index: ContentService.selectedIndex))
-        
+        let totalCommits = ContentService.getTotalContent(segmentControl.selectedIndex)
+        let progress = ContentService.getProgressContent(segmentControl.selectedIndex, index: ContentService.selectedIndex)
+        let fractionalProgress = Float(progress) / Float(totalCommits)
         self.statisticsProgress.setProgress(fractionalProgress, animated: true)
         self.statisticsSubtitle.text = ContentService.getSubTitleContent(segmentControl.selectedIndex)
         self.statisticsTitle.text = ContentService.getTitleContent(segmentControl.selectedIndex)
-        self.statisticsTotal.text = String(total)
+        self.statisticsTotal.text = String(progress)
     }
     
     func segmentValueChanged(sender: AnyObject?){
         navigationController!.navigationBar.barTintColor = segmentControl.colors[segmentControl.selectedIndex]
+        ContentService.selectedIndex = 0
         setStaticContent()
         self.setChartData(ContentService.getDataChart(self.segmentControl.selectedIndex, index: 0))
     }
