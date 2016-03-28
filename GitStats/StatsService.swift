@@ -23,7 +23,7 @@ class StatsService {
             ConfigService.cache.removeAllCachedResponses()
         }
         
-        ConfigService.manager?.request(.GET, "https://api.github.com/repos/github/linguist/stats/commit_activity",
+        ConfigService.manager?.request(.GET, "https://api.github.com/repos/\(AuthorizationService.repo_path)/stats/commit_activity",
             headers: ConfigService.getAuthorizationTokenHeader(AuthorizationService.token),
             parameters: nil, encoding: .JSON)
             .responseSwiftyJSON({ (request, response, json, error) in
@@ -71,7 +71,7 @@ class StatsService {
         //if we have wireless connection then remove cache and take fresh data else it will load it from cache
         if Reachability.isConnectedToNetwork() == true {ConfigService.cache.removeAllCachedResponses()}
         
-        ConfigService.manager?.request(.GET, "https://api.github.com/repos/github/linguist/stats/punch_card",
+        ConfigService.manager?.request(.GET, "https://api.github.com/repos/\(AuthorizationService.repo_path)/stats/punch_card",
             headers: ConfigService.getAuthorizationTokenHeader(AuthorizationService.token),
             parameters: nil, encoding: .JSON)
             .responseSwiftyJSON({ (request, response, json, error) in

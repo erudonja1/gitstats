@@ -48,6 +48,7 @@ class AuthorizationService {
                         //check repository info
                         StatsService.getRepoInfo(rpath, forView: forView, completionHandler: { (result, msg) -> () in
                             if result == true {
+                                AuthorizationService.repo_path = rpath
                                 userDefaults.setValue(rpath, forKey: "repo_path")
                                 completionHandler(true, "")
                             }else{
