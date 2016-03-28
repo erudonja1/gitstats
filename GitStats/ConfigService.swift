@@ -13,8 +13,8 @@ import SwiftyJSON
 class ConfigService {
     
     // CUSTOM VARIABLES
-    static let memoryCapacity = 100 * 1024 * 1024; // 100 MB
-    static let diskCapacity = 100 * 1024 * 1024; // 100 MB
+    static let memoryCapacity = 500 * 1024 * 1024; // 500 MB
+    static let diskCapacity = 500 * 1024 * 1024; // 500 MB
     static let cache = NSURLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "shared_cache")
     static var manager: Manager?
 
@@ -25,7 +25,7 @@ class ConfigService {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders
         configuration.HTTPAdditionalHeaders = defaultHeaders
-        configuration.requestCachePolicy = .UseProtocolCachePolicy
+        configuration.requestCachePolicy = .ReturnCacheDataElseLoad
         configuration.URLCache = cache
         manager = Alamofire.Manager(configuration: configuration)
     }

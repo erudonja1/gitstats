@@ -17,6 +17,12 @@ class StatsService {
     
     class func getStatsPerWeekAndMonth(forView: UIView, completionHandler: (Bool, String) -> ()) {
         UIService.showLoading(forView, message: "getting data...")
+        
+        //if we have wireless connection then remove cache and take fresh data else it will load it from cache
+        if Reachability.isConnectedToNetwork() == true {
+            ConfigService.cache.removeAllCachedResponses()
+        }
+        
         ConfigService.manager?.request(.GET, "https://api.github.com/repos/github/linguist/stats/commit_activity",
             headers: ConfigService.getAuthorizationTokenHeader(AuthorizationService.token),
             parameters: nil, encoding: .JSON)
@@ -61,6 +67,10 @@ class StatsService {
     
     class func getStatsPerDays(forView: UIView, completionHandler: (Bool, String) -> ()) {
         UIService.showLoading(forView, message: "getting data...")
+        
+        //if we have wireless connection then remove cache and take fresh data else it will load it from cache
+        if Reachability.isConnectedToNetwork() == true {ConfigService.cache.removeAllCachedResponses()}
+        
         ConfigService.manager?.request(.GET, "https://api.github.com/repos/github/linguist/stats/punch_card",
             headers: ConfigService.getAuthorizationTokenHeader(AuthorizationService.token),
             parameters: nil, encoding: .JSON)
@@ -95,6 +105,10 @@ class StatsService {
     
     class func getRepoInfo(repoPath: String, forView: UIView, completionHandler: (Bool, String) -> ()) {
         UIService.showLoading(forView, message: "checking repository...")
+        
+        //if we have wireless connection then remove cache and take fresh data else it will load it from cache
+        if Reachability.isConnectedToNetwork() == true {ConfigService.cache.removeAllCachedResponses()}
+        
         ConfigService.manager?.request(.GET, "https://api.github.com/repos/\(repoPath)",
             headers: ConfigService.getAuthorizationTokenHeader(AuthorizationService.token),
             parameters: nil, encoding: .JSON)
