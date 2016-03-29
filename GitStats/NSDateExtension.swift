@@ -52,19 +52,19 @@ extension NSDate {
     func getDayName(weekDay: Int) -> String{
         switch weekDay {
         case 1:
-            return "Sunday"
+            return "Sun"
         case 2:
-            return "Monday"
+            return "Mon"
         case 3:
-            return "Tuesday"
+            return "Tue"
         case 4:
-            return "Wednesday"
+            return "Wed"
         case 5:
-            return "Thursday"
+            return "Thu"
         case 6:
-            return "Friday"
+            return "Fri"
         case 7:
-            return "Saturday"
+            return "Sat"
         default:
             print("Error fetching day names")
             return "Day"
