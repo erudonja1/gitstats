@@ -18,14 +18,17 @@ class UIService {
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
-    class func questionMenu(title:String, message: String, buttonText: String, viewController: UIViewController, completion: (Bool) -> ()){
+    class func questionMenu(title:String, buttonText: String, buttonText2: String, viewController: UIViewController, completion: (String) -> ()){
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: title, message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default, handler: { action in
-            completion(true)
+            completion(buttonText)
+        }))
+        alert.addAction(UIAlertAction(title: buttonText2, style: UIAlertActionStyle.Default, handler: { action in
+            completion(buttonText2)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { action in
-            completion(false)
+            completion("Cancel")
         }))
         viewController.presentViewController(alert, animated: true, completion: nil)
     }

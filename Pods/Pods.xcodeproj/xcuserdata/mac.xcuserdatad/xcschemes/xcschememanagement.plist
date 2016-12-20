@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Alamofire-SwiftyJSON.xcscheme</key>
+		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Alamofire.xcscheme</key>
+		<key>AlamofireSwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Spring.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>37497E34C6D8DB9DDE5BF13B247CA9AD</key>
+		<key>1520003FEBEC114D6C84F832AFEDB994</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D9EDCF48A5AA1A0B1FB393CB904CF6F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>744D8936F538391EE0E1CD29AC2DAC87</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7872FFF8E2A3F1FB198513F78EFA0702</key>
+		<key>1FE2578FF0805299395CF2A0206BB671</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BA6E0277B093034DD23B6A1F3F6F0D6</key>
+		<key>84C2C12815BFFF62CC0A948441C2FFCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ACD6B942B9CDEDAD276BCDB529D4B167</key>
+		<key>B73C8140915D30861C72F02B0F50A433</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8A55784801404DA0A51E1829BBB0F54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
+		<key>DBA6001481CEA0EBA031CC5C94508FAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9B5C577F89B2F2EBCB51E034A136673</key>
+		<key>EF4F067C2D0E135B80299B089E168BDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

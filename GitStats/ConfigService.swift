@@ -7,7 +7,7 @@
 //
 
 import Alamofire
-import Alamofire_SwiftyJSON
+import AlamofireSwiftyJSON
 import SwiftyJSON
 
 class ConfigService {

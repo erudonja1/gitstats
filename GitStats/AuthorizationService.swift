@@ -7,6 +7,7 @@
 //
 import Foundation
 import UIKit
+import AlamofireSwiftyJSON
 
 class AuthorizationService {
     
@@ -38,7 +39,9 @@ class AuthorizationService {
                     "client_id": "\(client_id)",
                     "client_secret": "\(client_secret)"
                 ], encoding: .JSON)
-                .responseSwiftyJSON({ (request, response, json, error) in
+                .responseSwiftyJSON(completionHandler: {(response)in
+                    let json = response.result.value!
+                    let error = response.result.error
                     //this condition is because github API returns ALWAYS json
                     if error == nil && json != nil && json["message"].stringValue == "" {
                         token = json["token"].stringValue
@@ -59,7 +62,7 @@ class AuthorizationService {
                     }
                     else {
                         var message = "Something went wrong"
-                        if response == nil { message = "No internet connection"}
+                        if response.response == nil { message = "No internet connection"}
                         if json["message"].stringValue != "" {message = json["message"].stringValue}
                         clearToken()
                         completionHandler(false, message)
@@ -77,7 +80,7 @@ class AuthorizationService {
         ConfigService.manager?.request(.DELETE, "https://api.github.com/authorizations/\(token_id)",
             headers: ConfigService.getAuthorizationTokenHeader(token),
             parameters: nil)
-            .responseSwiftyJSON({ (request, response, json, error) in
+            .responseSwiftyJSON(completionHandler: {(response) in
                 token=""
                 token_id=""
                 repo_path=""

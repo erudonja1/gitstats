@@ -20,6 +20,9 @@ class ContentService {
         case 1:
             return StatsService.weeks[index].weekDayStatistics
         case 2:
+            for (ind, _)  in StatsService.months[index].dayStatistics.enumerate() {
+                StatsService.months[index].dayStatistics[ind].key = NSDate().getReadableDateDay(StatsService.months[index].dayStatistics[ind].date)
+            }
             return StatsService.months[index].dayStatistics
         default:
             print("Error getting data for chart view")
@@ -49,11 +52,11 @@ class ContentService {
     class func getTitleContent(tab: Int) -> String{
         switch tab {
         case 0:
-           return "Days statistics"
+            return "Days statistics"
         case 1:
-           return "Weekly statistics"
+            return "Weekly statistics"
         case 2:
-           return "Monthly statistics"
+            return "Monthly statistics"
         default:
             print("Error getting title content")
             return ""
@@ -91,9 +94,19 @@ class ContentService {
         case 0:
             return "" //NSDate().getReadableDateMonth(StatsService.days[index].date) because days are not currently taken
         case 1:
-           return NSDate().getReadableDateMonth(StatsService.weeks[index].fromDate)
+            if StatsService.weeks.count > 0
+            {
+                return NSDate().getReadableDateMonth(StatsService.weeks[index].fromDate)
+            }else {
+                return ""
+            }
         case 2:
-            return  NSDate().getReadableDateYear(StatsService.months[index].date)
+            if StatsService.months.count > 0
+            {
+                return  NSDate().getReadableDateYear(StatsService.months[index].date)
+            }else {
+                return ""
+            }
         default:
             print("Error getting date readable name for statistics date")
             return ""
@@ -115,11 +128,16 @@ class ContentService {
     class func getTotalContent(tab: Int) -> Int{
         switch tab {
         case 0:
-            return StatsService.days.reduce(0,combine: {$0 + $1.hourStatistics.reduce(0,combine: {$0 + $1.value})})
+            let content = StatsService.days.reduce(0,combine: {$0 + $1.hourStatistics.reduce(0,combine: {$0 + $1.value})})
+            return content
         case 1:
-            return StatsService.weeks.reduce(0,combine: {$0 + $1.weekDayStatistics.reduce(0,combine: {$0 + $1.value})})
+            let content = StatsService.weeks.reduce(0,combine: {$0 + $1.weekDayStatistics.reduce(0,combine: {$0 + $1.value})})
+            print(StatsService.weeks)
+            return content
         case 2:
-            return StatsService.months.reduce(0,combine: {$0 + $1.dayStatistics.reduce(0,combine: {$0 + $1.value})})
+            let content = StatsService.months.reduce(0,combine: {$0 + $1.dayStatistics.reduce(0,combine: {$0 + $1.value})})
+            print(StatsService.months)
+            return content
         default:
             print("Error getting progress number")
             return 0

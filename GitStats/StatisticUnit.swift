@@ -8,11 +8,13 @@
 
 import Foundation
 
-class StatisticUnit{
+struct StatisticUnit{
+    var date: NSDate
     var key: String //name on X axis
     var value: Int //value on Y axis
     init(){
         self.key = ""
         self.value = 0
+        self.date = NSDate()
     }
 }

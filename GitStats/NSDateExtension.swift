@@ -70,11 +70,14 @@ extension NSDate {
             return "Day"
         }
     }
-    func getMonthName(dayDate: NSDate) -> String{
+    func getMonth(dayDate: NSDate) -> Int{
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let myComponents = myCalendar.components(.Month, fromDate: dayDate)
-        let weekDay = myComponents.month
-        switch weekDay {
+        return myComponents.month
+    }
+    func getMonthName(dayDate: NSDate) -> String{
+        let monthNum = getMonth(dayDate)
+        switch monthNum {
         case 1:
             return "January"
         case 2:
@@ -131,9 +134,15 @@ extension NSDate {
         formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("d MMMM", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
         return formatter.stringFromDate(date)
     }
+    func getReadableDateDay(date:NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("d", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
+        return formatter.stringFromDate(date)
+    }
     func getReadableDateYear(date:NSDate) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("MMMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
         return formatter.stringFromDate(date)
     }
+
 }

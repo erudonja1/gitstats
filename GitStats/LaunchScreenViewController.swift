@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Spring
 import FontAwesome_swift
 
 class LaunchScreenViewController: UIViewController {
     
 
-    @IBOutlet weak var AppTitle: SpringLabel!
+    @IBOutlet weak var AppTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +26,13 @@ class LaunchScreenViewController: UIViewController {
         AppTitle.attributedText = myMutableString
         
         //come in
-        AppTitle.animation = "fadeIn";
+      /*  AppTitle.animation = "fadeIn";
         AppTitle.duration = 3;
         AppTitle.autohide = true;
-        AppTitle.animate();
+        AppTitle.animate();*/
 
         //when animations are finished, do segue and go to initial view
-        _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "doSegue", userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(LaunchScreenViewController.doSegue), userInfo: nil, repeats: false)
     }
     
     func doSegue(){

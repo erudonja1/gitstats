@@ -1,16 +1,24 @@
 # Uncomment this line to define a global platform for your project
- platform :ios, '8.0'
+platform :ios, '8.0'
 # Uncomment this line if you're using Swift
  use_frameworks!
 
 target 'GitStats' do
     pod 'Alamofire'
-    pod 'MBProgressHUD', '~> 0.9.0'
+    pod 'MBProgressHUD'
     pod 'SwiftyJSON'
-    pod 'Alamofire-SwiftyJSON', :podspec => 'https://raw.githubusercontent.com/pdutourgeerling/Alamofire-SwiftyJSON-Podspec/master/Alamofire3-SwiftyJSON.podspec'
-    pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
-    pod 'IQKeyboardManagerSwift'
-    pod 'Charts'
-    pod 'FontAwesome.swift'
+    pod 'AlamofireSwiftyJSON'
+
+    pod 'IQKeyboardManagerSwift', '4.0.5'
+    pod 'Charts', '2.3.0'
+    pod 'FontAwesome.swift', :git => 'https://github.com/thii/FontAwesome.swift.git', :tag => '0.10.1'
 end
 
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '2.3'
+        end
+    end
+end

@@ -28,7 +28,7 @@ class MainViewController: UIViewController, ChartViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.bounces = false
-        let logout = UIBarButtonItem(image: UIImage(named: "Cogwheel"), style: UIBarButtonItemStyle.Plain, target: self, action: "doLogout")
+        let logout = UIBarButtonItem(image: UIImage(named: "Cogwheel"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MainViewController.doLogout))
         logout.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItems = [logout]
         appTitle.title = "GitStats"
@@ -40,19 +40,21 @@ class MainViewController: UIViewController, ChartViewDelegate{
         
         navigationController!.navigationBar.barTintColor = segmentControl.colors[segmentControl.selectedIndex]
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        segmentControl.addTarget(self, action: "segmentValueChanged:", forControlEvents: .ValueChanged)
+        segmentControl.addTarget(self, action: #selector(MainViewController.segmentValueChanged(_:)), forControlEvents: .ValueChanged)
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: "changeChartData:")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.changeChartData(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "changeChartData:")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.changeChartData(_:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: "changeChartData:")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.changeChartData(_:)))
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-        self.view.addGestureRecognizer(swipeDown)
+        
+        self.segmentControl.addGestureRecognizer(swipeDown)
+        
         scrollView.panGestureRecognizer.requireGestureRecognizerToFail(swipeDown)
         
         self.lineChartView.delegate = self
@@ -66,10 +68,29 @@ class MainViewController: UIViewController, ChartViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     func doLogout(){
-        UIService.questionMenu("Are you sure?", message: "All data will be lost.", buttonText: "Logout", viewController: self,  completion: {(result) in
-            if result == true {
+        UIService.questionMenu("Are you sure?", buttonText: "Logout", buttonText2: "Analysis", viewController: self,  completion: {(result) in
+            
+            if result == "Logout" {
                 AuthorizationService.clearToken()
                 self.performSegueWithIdentifier("showLoginView", sender: self)
+            }
+            if result == "Analysis" {
+                UIService.showLoading(self.view, message: "analyzing...")
+                // Testing purposes
+                var testers: [StatisticUnit] = []
+                var i = 1
+                repeat {
+                    var item = StatisticUnit()
+                    item.value = 100
+                    testers.append(item)
+                    i = i + 1
+                } while i < 10000
+                let analysisResult = AnalysisServiceNew.get(testers, tab: 1)
+                
+                
+               // let analysisResult = AnalysisServiceNew.get(ContentService.getDataChart(self.segmentControl.selectedIndex, index: ContentService.selectedIndex), tab: self.segmentControl.selectedIndex)
+                UIService.hideLoading(self.view)
+                UIService.showAlert("Analysis", message: analysisResult, buttonText: "Close", viewController: self)
             }
         })
     }
@@ -97,7 +118,7 @@ class MainViewController: UIViewController, ChartViewDelegate{
         
         // 1 - creating an array of data entries
         var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
-        for var i = 0; i < values.count; i++ {
+        for (i, _) in values.enumerate(){
             yVals1.append(ChartDataEntry(value: Double(values[i].value), xIndex: i))
         }
         
@@ -136,7 +157,8 @@ class MainViewController: UIViewController, ChartViewDelegate{
         // setting x axis
         self.lineChartView.xAxis.labelPosition = .Bottom
         self.lineChartView!.xAxis.drawGridLinesEnabled = false
-        self.lineChartView.xAxis.setLabelsToSkip(values.count-2)
+        self.lineChartView.xAxis.spaceBetweenLabels = 0
+        //self.lineChartView.xAxis.setLabelsToSkip(values.count-2)
         
         
         //setting y axis left
@@ -157,6 +179,18 @@ class MainViewController: UIViewController, ChartViewDelegate{
         self.lineChartView!.noDataTextDescription = ""
         self.lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
     }
+
+    
+    func segmentValueChanged(sender: AnyObject?){
+        if StatsService.weeks.count != 0 || StatsService.months.count != 0{
+            navigationController!.navigationBar.barTintColor = segmentControl.colors[segmentControl.selectedIndex]
+            ContentService.selectedIndex = 0
+            setStaticContent()
+            self.setChartData(ContentService.getDataChart(self.segmentControl.selectedIndex, index: 0))
+        }else{
+            UIService.showAlert("Loading", message: "Please wait, loading data...", buttonText: "Ok", viewController: self)
+        }
+    }
     func setStaticContent(){
         self.statisticsDate.text = ContentService.getDateContent(segmentControl.selectedIndex, index: ContentService.selectedIndex)
         self.statisticsDescription.text = ContentService.getDescriptionContent(segmentControl.selectedIndex)
@@ -168,13 +202,6 @@ class MainViewController: UIViewController, ChartViewDelegate{
         self.statisticsSubtitle.text = ContentService.getSubTitleContent(segmentControl.selectedIndex)
         self.statisticsTitle.text = ContentService.getTitleContent(segmentControl.selectedIndex)
         self.statisticsTotal.text = String(progress)
-    }
-    
-    func segmentValueChanged(sender: AnyObject?){
-        navigationController!.navigationBar.barTintColor = segmentControl.colors[segmentControl.selectedIndex]
-        ContentService.selectedIndex = 0
-        setStaticContent()
-        self.setChartData(ContentService.getDataChart(self.segmentControl.selectedIndex, index: 0))
     }
     
     func changeChartData(gesture: UIGestureRecognizer) {
@@ -205,7 +232,7 @@ class MainViewController: UIViewController, ChartViewDelegate{
         }
     }
     
-
+    
     
     
 }
