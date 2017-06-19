@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FontAwesome_swift
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
     
@@ -23,7 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.bounces = false
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         let myString:NSString = "GitStats"
         var myMutableString = NSMutableAttributedString()
         myMutableString = NSMutableAttributedString(string: myString as String, attributes: nil)
@@ -34,10 +33,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         password.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
         url.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
         
-        loginButton.backgroundColor = UIColor.clearColor()
+        loginButton.backgroundColor = UIColor.clear
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        loginButton.layer.borderColor = UIColor.white.cgColor
         
     }
     
@@ -59,23 +58,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let words = url_text.characters.split{$0 == "/"}.map(String.init)
         if words.count >= 2 {
             let repo_path = words[words.count-2] + "/" + words[words.count-1]
-            AuthorizationService.getToken(username.text!, password: password.text!, rpath: repo_path, forView: self.view, completionHandler: {(str, msg) in
+            AuthorizationService.getToken(username: username.text!, password: password.text!, rpath: repo_path, forView: self.view, completionHandler: {(str, msg) in
                 if str == true {
-                    self.performSegueWithIdentifier("showMainView", sender: self)
+                    self.performSegue(withIdentifier: "showMainView", sender: self)
                 } else {
-                    UIService.showAlert("Error", message: msg, buttonText: "Dismiss", viewController: self)
+                    UIService.showAlert(title: "Error", message: msg, buttonText: "Dismiss", viewController: self)
                 }
             })
         }else {
-            UIService.showAlert("Error", message: "Wrong credentials", buttonText: "Dismiss", viewController: self)
+            UIService.showAlert(title: "Error", message: "Wrong credentials", buttonText: "Dismiss", viewController: self)
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
-    
-    
 }

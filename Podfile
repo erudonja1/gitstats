@@ -7,18 +7,16 @@ target 'GitStats' do
     pod 'Alamofire'
     pod 'MBProgressHUD'
     pod 'SwiftyJSON'
-    pod 'AlamofireSwiftyJSON'
-
-    pod 'IQKeyboardManagerSwift', '4.0.5'
-    pod 'Charts', '2.3.0'
-    pod 'FontAwesome.swift', :git => 'https://github.com/thii/FontAwesome.swift.git', :tag => '0.10.1'
+    pod 'ObjectMapper'
+    pod 'IQKeyboardManagerSwift'
+    pod 'Charts'
 end
 
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '2.3'
+            config.build_settings['SWIFT_VERSION'] = '3.0'
         end
     end
 end

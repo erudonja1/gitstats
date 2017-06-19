@@ -8,28 +8,24 @@
 
 import UIKit
 extension UIColor {
-    // Initialiser for strings of format '#_RED_GREEN_BLUE_'
-    convenience init(hex: String?) {
-        var color: String = ""
-        if hex == nil { color = "#000000"} else { color = hex!}
-        
-        let redRange    = Range<String.Index>(color.startIndex.advancedBy(1) ..< color.startIndex.advancedBy(3))
-        let greenRange  = Range<String.Index>(color.startIndex.advancedBy(3) ..< color.startIndex.advancedBy(5))
-        let blueRange   = Range<String.Index>(color.startIndex.advancedBy(5) ..< color.startIndex.advancedBy(7))
-        
-        var red     : UInt32 = 0
-        var green   : UInt32 = 0
-        var blue    : UInt32 = 0
-        
-        NSScanner(string: color.substringWithRange(redRange)).scanHexInt(&red)
-        NSScanner(string: color.substringWithRange(greenRange)).scanHexInt(&green)
-        NSScanner(string: color.substringWithRange(blueRange)).scanHexInt(&blue)
-        
-        self.init(
-            red: CGFloat(red) / 255,
-            green: CGFloat(green) / 255,
-            blue: CGFloat(blue) / 255,
-            alpha: 1
-        )
+    convenience init(string: String) {
+        var chars = Array(string.hasPrefix("#") ? string.characters.dropFirst() : string.characters)
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
+        switch chars.count {
+        case 3:
+            chars = [chars[0], chars[0], chars[1], chars[1], chars[2], chars[2]]
+            fallthrough
+        case 6:
+            chars = ["F","F"] + chars
+            fallthrough
+        case 8:
+            alpha = CGFloat(strtoul(String(chars[0...1]), nil, 16)) / 255
+            red   = CGFloat(strtoul(String(chars[2...3]), nil, 16)) / 255
+            green = CGFloat(strtoul(String(chars[4...5]), nil, 16)) / 255
+            blue  = CGFloat(strtoul(String(chars[6...7]), nil, 16)) / 255
+        default:
+            alpha = 0
+        }
+        self.init(red: red, green: green, blue:  blue, alpha: alpha)
     }
 }

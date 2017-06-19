@@ -2,8 +2,6 @@
 //  IPieChartDataSet.swift
 //  Charts
 //
-//  Created by Daniel Cohen Gindi on 26/2/15.
-//
 //  Copyright 2015 Daniel Cohen Gindi & Philipp Jahoda
 //  A port of MPAndroidChart for iOS
 //  Licensed under Apache License 2.0
@@ -28,6 +26,9 @@ public protocol IPieChartDataSet: IChartDataSet
     /// **maximum**: 20
     var sliceSpace: CGFloat { get set }
     
+    /// When enabled, slice spacing will be 0.0 when the smallest value is going to be smaller than the slice spacing itself.
+    var automaticallyDisableSliceSpacing: Bool { get set }
+    
     /// indicates the selection distance of a pie slice
     var selectionShift: CGFloat { get set }
     
@@ -51,4 +52,10 @@ public protocol IPieChartDataSet: IChartDataSet
     
     /// When valuePosition is OutsideSlice, this allows variable line length
     var valueLineVariableLength: Bool { get set }
+    
+    /// the font for the slice-text labels
+    var entryLabelFont: NSUIFont? { get set }
+    
+    /// the color for the slice-text labels
+    var entryLabelColor: NSUIColor? { get set }
 }

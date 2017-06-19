@@ -10,7 +10,6 @@ import Foundation
 class AnalysisService {
     
     class func get(inputs: [StatisticUnit], tab: Int) -> String{
-        let timeStart = NSDate().timeIntervalSince1970
         var resultString = ""
         let minBorderValue: Int, maxBorderValue: Int
         switch tab {
@@ -42,27 +41,24 @@ class AnalysisService {
         let counterArray = [lowCommits.count, middleCommits.count, highCommits.count]
         
         //get average value
-        let average = getAverage(inputs)
+        let average = getAverage(inputs: inputs)
         resultString += "\r\n Average commits: \(average)"
         
         //get productivity type
-        resultString += "\r\n Productivity: \(getProductivity(average, min:minBorderValue, max:maxBorderValue))"
-        
+        resultString += "\r\n Productivity: \(getProductivity(average: average, min:minBorderValue, max:maxBorderValue))"
+       
         //get consistency of productivity
-        resultString += "\r\n Consistency: \(getConsistency(counterArray))"
+       resultString += "\r\n Consistency: \(getConsistency(counterArray: counterArray))"
 
         //get most productive
-        resultString += "\r\n Best: \(getBest(inputs))"
-        
-        let timeStop = NSDate().timeIntervalSince1970
-        print(timeStop - timeStart)
+        resultString += "\r\n Best: \(getBest(inputs: inputs))"
         return resultString
     }
     
     //static function for Average
     class func getAverage(inputs: [StatisticUnit]) -> Double{
         let onlyValues = inputs.map({$0.value})
-        let sum = onlyValues.reduce(0, combine: +)
+        let sum = onlyValues.reduce(0, +)
         let average: Double = Double(sum) / Double(inputs.count)
         return round(average)
     }
@@ -77,16 +73,16 @@ class AnalysisService {
     
     //static function for Consistency
     class func getConsistency(counterArray: [Int]) -> String{
-        let maxElement = counterArray.maxElement()!
+        let maxElement = counterArray.max()!
         if maxElement == 0 {return "0%"}
-        let counterArraySum = counterArray.reduce(0, combine: +)
+        let counterArraySum = counterArray.reduce(0, +)
         return "\((maxElement * 100)/counterArraySum)%"
     }
     
     //static function for Best result
     class func getBest(inputs: [StatisticUnit]) -> String{
         let onlyValues = inputs.map({$0.value})
-        let max = onlyValues.maxElement()
+        let max = onlyValues.max()
         if max == 0 {return "none"}
         let best = inputs.filter({$0.value == max}).first
         return "\(best!.key)"

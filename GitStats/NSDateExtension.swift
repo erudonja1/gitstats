@@ -1,5 +1,5 @@
 //
-//  NSDateExtension.swift
+//  DateExtension.swift
 //  GitStats
 //
 //  Created by mac on 27/03/16.
@@ -9,45 +9,45 @@
 import Foundation
 
 
-extension NSDate {
-    func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
+extension Date {
+    func yearsFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.year, from: date)
     }
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
+    func monthsFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.month, from: date)
     }
-    func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+    func weeksFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.weekOfYear, from: date)
     }
-    func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
+    func daysFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.day, from: date)
     }
-    func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+    func hoursFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.hour, from: date)
     }
-    func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+    func minutesFrom(date:Date) -> Int{
+        return NSCalendar.current.component(.minute, from: date)
     }
-    func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+    func secondsFrom(date:Date) -> Int{
+        return Calendar.current.component(.second, from: date)
     }
-    func offsetFrom(date:NSDate) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
+    func offsetFrom(date:Date) -> String {
+        if yearsFrom(date: date)   > 0 { return "\(yearsFrom(date: date))y"   }
+        if monthsFrom(date: date)  > 0 { return "\(monthsFrom(date: date))M"  }
+        if weeksFrom(date: date)   > 0 { return "\(weeksFrom(date: date))w"   }
+        if daysFrom(date: date)    > 0 { return "\(daysFrom(date: date))d"    }
+        if hoursFrom(date: date)   > 0 { return "\(hoursFrom(date: date))h"   }
+        if minutesFrom(date: date) > 0 { return "\(minutesFrom(date: date))m" }
+        if secondsFrom(date: date) > 0 { return "\(secondsFrom(date: date))s" }
         return ""
     }
     
     //Get day name from date
-    func getDay(dayDate: NSDate) -> String{
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Weekday, fromDate: dayDate)
+    func getDay(dayDate: Date) -> String{
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let myComponents = myCalendar.components(.weekday, from: dayDate as Date)
         let weekDay = myComponents.weekday
-        return getDayName(weekDay)
+        return getDayName(weekDay: weekDay!)
     }
     func getDayName(weekDay: Int) -> String{
         switch weekDay {
@@ -70,13 +70,13 @@ extension NSDate {
             return "Day"
         }
     }
-    func getMonth(dayDate: NSDate) -> Int{
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Month, fromDate: dayDate)
-        return myComponents.month
+    func getMonth(dayDate: Date) -> Int{
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let myComponents = myCalendar.components(.month, from: dayDate as Date)
+        return myComponents.month!
     }
-    func getMonthName(dayDate: NSDate) -> String{
-        let monthNum = getMonth(dayDate)
+    func getMonthName(dayDate: Date) -> String{
+        let monthNum = getMonth(dayDate: dayDate)
         switch monthNum {
         case 1:
             return "January"
@@ -107,42 +107,34 @@ extension NSDate {
             return "Month"
         }
     }
-    func addDaysToDate(date: NSDate, val: Int) -> NSDate{
-        let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
-            .Day,
-            value: val,
-            toDate: date,
-            options: NSCalendarOptions(rawValue: 0))!
+    func addDaysToDate(date: Date, val: Int) -> Date{
+        let newDate = Calendar.current.date(byAdding: .day, value: val, to: date)!
         return newDate
     }
-    func addMonthsToDate(date: NSDate, val: Int) -> NSDate{
-        let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
-            .Month,
-            value: val,
-            toDate: date,
-            options: NSCalendarOptions(rawValue: 0))!
+    func addMonthsToDate(date: Date, val: Int) -> Date{
+        let newDate = Calendar.current.date(byAdding: .month, value: val, to: date)!
         return newDate
     }
     
-    func getReadableDate(date:NSDate) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        return formatter.stringFromDate(date)
+    func getReadableDate(date:Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        return formatter.string(from: date as Date)
     }
-    func getReadableDateMonth(date:NSDate) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("d MMMM", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
-        return formatter.stringFromDate(date)
+    func getReadableDateMonth(date:Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "d MMMM", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+        return formatter.string(from: date as Date)
     }
-    func getReadableDateDay(date:NSDate) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("d", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
-        return formatter.stringFromDate(date)
+    func getReadableDateDay(date:Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "d", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+        return formatter.string(from: date as Date)
     }
-    func getReadableDateYear(date:NSDate) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("MMMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
-        return formatter.stringFromDate(date)
+    func getReadableDateYear(date:Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+        return formatter.string(from: date as Date)
     }
 
 }
