@@ -22,10 +22,10 @@
 		044A60971CA48CA6001B807D /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A60961CA48CA6001B807D /* SegmentControl.swift */; };
 		04590E841C95DB210061E31B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04590E831C95DB210061E31B /* LoginViewController.swift */; };
 		0471363F1DF389CB00A76F08 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471363E1DF389CB00A76F08 /* UIColor.swift */; };
+		048F11FF1EF94A5300E8F3C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048F11FE1EF94A5300E8F3C0 /* Assets.xcassets */; };
 		04951B831C955B67008188CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B821C955B67008188CA /* AppDelegate.swift */; };
 		04951B851C955B67008188CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04951B841C955B67008188CA /* MainViewController.swift */; };
 		04951B881C955B67008188CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04951B861C955B67008188CA /* Main.storyboard */; };
-		04951B8A1C955B67008188CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04951B891C955B67008188CA /* Assets.xcassets */; };
 		04951B8D1C955B67008188CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04951B8B1C955B67008188CA /* LaunchScreen.storyboard */; };
 		049CBFBA1C9565F200E5FE77 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CBFB91C9565F200E5FE77 /* LaunchScreenViewController.swift */; };
 		04D903C31CA8F5BE00E33C5C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D903C21CA8F5BE00E33C5C /* Reachability.swift */; };
@@ -50,11 +50,11 @@
 		044A60961CA48CA6001B807D /* SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		04590E831C95DB210061E31B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0471363E1DF389CB00A76F08 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		048F11FE1EF94A5300E8F3C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04951B7F1C955B67008188CA /* GitStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04951B821C955B67008188CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04951B841C955B67008188CA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04951B871C955B67008188CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04951B891C955B67008188CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04951B8C1C955B67008188CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04951B8E1C955B67008188CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049CBFB91C9565F200E5FE77 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -185,9 +185,9 @@
 				0408E03C1EEFE979002541E0 /* Interactor */,
 				0408E03B1EEFE972002541E0 /* View */,
 				04951B821C955B67008188CA /* AppDelegate.swift */,
-				04951B891C955B67008188CA /* Assets.xcassets */,
 				0404EE0C1CA7DA7F009EF112 /* Extensions */,
 				04951B8E1C955B67008188CA /* Info.plist */,
+				048F11FE1EF94A5300E8F3C0 /* Assets.xcassets */,
 			);
 			path = GitStats;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04951B8D1C955B67008188CA /* LaunchScreen.storyboard in Resources */,
-				04951B8A1C955B67008188CA /* Assets.xcassets in Resources */,
+				048F11FF1EF94A5300E8F3C0 /* Assets.xcassets in Resources */,
 				04951B881C955B67008188CA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +474,7 @@
 			baseConfigurationReference = 4DADC7D3B1248C9DC480D21F /* Pods-GitStats.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 296GZGJY4F;
 				INFOPLIST_FILE = GitStats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -489,7 +489,7 @@
 			baseConfigurationReference = 6D1CF049774E16E02439F8C6 /* Pods-GitStats.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 296GZGJY4F;
 				INFOPLIST_FILE = GitStats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

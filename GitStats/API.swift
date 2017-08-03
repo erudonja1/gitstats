@@ -26,8 +26,8 @@ class API {
         let configuration = URLSessionConfiguration.default
         let defaultHeaders = Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders
         configuration.httpAdditionalHeaders = defaultHeaders
-      //  configuration.requestCachePolicy = .reload
-       // configuration.urlCache = cache
+      // configuration.requestCachePolicy = .reload // not working with github API
+    // configuration.urlCache = cache
         manager = Alamofire.SessionManager(configuration: configuration)
     }
     
