@@ -9,7 +9,7 @@
 import Foundation
 class AnalysisService {
     
-    class func get(inputs: [StatisticUnit], tab: Int) -> String{
+    func get(inputs: [StatisticUnit], tab: Int) -> String{
         var resultString = ""
         let minBorderValue: Int, maxBorderValue: Int
         switch tab {
@@ -55,32 +55,28 @@ class AnalysisService {
         return resultString
     }
     
-    //static function for Average
-    class func getAverage(inputs: [StatisticUnit]) -> Double{
+    private func getAverage(inputs: [StatisticUnit]) -> Double{
         let onlyValues = inputs.map({$0.value})
         let sum = onlyValues.reduce(0, +)
         let average: Double = Double(sum) / Double(inputs.count)
         return round(average)
     }
     
-    //static function for Productivity
-    class func getProductivity(average: Double, min:Int, max:Int) -> String{
+    private func getProductivity(average: Double, min:Int, max:Int) -> String{
         if average <= Double(min) {return "low"}
         if average > Double(min) && average < Double(max) {return "middle"}
         if average > Double(max) {return "high"}
         return ""
     }
     
-    //static function for Consistency
-    class func getConsistency(counterArray: [Int]) -> String{
+    private func getConsistency(counterArray: [Int]) -> String{
         let maxElement = counterArray.max()!
         if maxElement == 0 {return "0%"}
         let counterArraySum = counterArray.reduce(0, +)
         return "\((maxElement * 100)/counterArraySum)%"
     }
     
-    //static function for Best result
-    class func getBest(inputs: [StatisticUnit]) -> String{
+    private func getBest(inputs: [StatisticUnit]) -> String{
         let onlyValues = inputs.map({$0.value})
         let max = onlyValues.max()
         if max == 0 {return "none"}

@@ -12,6 +12,7 @@ struct StatisticUnit{
     var date: Date
     var key: String //name on X axis
     var value: Int //value on Y axis
+    
     init(){
         self.key = ""
         self.value = 0
