@@ -175,15 +175,6 @@
 			path = GitStats;
 			sourceTree = "<group>";
 		};
-		04A8E18A20DDF131003D2723 /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				04A8E18B20DDF14B003D2723 /* AuthorizationDbWorker.swift */,
-				04A8E18D20DDF182003D2723 /* AuthorizationNetworkWorker.swift */,
-			);
-			name = Authorization;
-			sourceTree = "<group>";
-		};
 		04B3CEDD20DAC26C0060E233 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +197,6 @@
 		04B3CEEC20DAE7060060E233 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				04A8E18A20DDF131003D2723 /* Authorization */,
 				04B3CEE820DAD7D10060E233 /* BaseViewController.swift */,
 				0408E0401EEFF577002541E0 /* API.swift */,
 				0404EE021CA7C365009EF112 /* UIService.swift */,
@@ -237,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				04E5F6D81CA1C00500D979D2 /* AuthorizationInteractor.swift */,
+				04A8E18B20DDF14B003D2723 /* AuthorizationDbWorker.swift */,
+				04A8E18D20DDF182003D2723 /* AuthorizationNetworkWorker.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";

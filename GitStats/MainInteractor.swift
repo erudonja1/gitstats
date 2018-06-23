@@ -2,8 +2,8 @@
 //  MainInteractor.swift
 //  GitStats
 //
-//  Created by mac on 23/06/2018.
-//  Copyright © 2018 Elvis Studio. All rights reserved.
+//  Created by mac on 23/06/2016.
+//  Copyright © 2016 Elvis Studio. All rights reserved.
 //
 
 import Foundation
