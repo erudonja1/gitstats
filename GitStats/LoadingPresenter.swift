@@ -12,11 +12,14 @@ import UIKit
 
 class LoadingPresenter{
     
+    let router: MainRouter = MainRouter()
+    let interactor: AuthorizationInteractor = AuthorizationInteractor()
+    
     func checkAuthorization(viewController: UIViewController){
-        if AuthService.sharedInstance.isLoggedIn() == false {
-            MainRouter().navigateToLogin(from: viewController)
+        if interactor.isLoggedIn() == false {
+            router.navigateToLogin(from: viewController)
         } else {
-            MainRouter().navigateToMain(from: viewController)
+            router.navigateToMain(from: viewController)
         }
     }
     

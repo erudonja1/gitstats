@@ -17,9 +17,13 @@ protocol MainViewProtocol: class {
 }
 
 
-class MainPresenter {
+class MainPresenter: MainPresenterProtocol {
     
     weak var output: MainViewProtocol?
+    
+    private let router: MainRouter = MainRouter()
+    private let authorizationInteractor: AuthorizationInteractor = AuthorizationInteractor()
+    private let mainInteractor: MainInteractor = MainInteractor()
     
     var days: [DayStatistics]
     var weeks: [WeekStatistics]
@@ -38,8 +42,8 @@ class MainPresenter {
     }
     
     func logout(viewController: MainViewController){
-        AuthService.sharedInstance.clearToken()
-        MainRouter().navigateToLogin(from: viewController)
+        authorizationInteractor.logout()
+        router.navigateToLogin(from: viewController)
     }
     
     func analyze(selectedIndex: Int?){
@@ -47,7 +51,7 @@ class MainPresenter {
         
         let selectedTabIndex = selectedIndex ?? 0
         let chartData = self.getDataChart(tab: selectedTabIndex)
-        let analysisResult = AnalysisService().get(inputs: chartData, tab: selectedTabIndex)
+        let analysisResult = AnalysisWorker().get(inputs: chartData, tab: selectedTabIndex)
         
         self.output?.hideLoading()
         self.output?.show(analysisResult: analysisResult)
@@ -144,6 +148,48 @@ class MainPresenter {
         }
     }
     
+    func getTitle(tab: Int) -> String{
+        switch tab {
+        case 0:
+            return "Days statistics"
+        case 1:
+            return "Weekly statistics"
+        case 2:
+            return "Monthly statistics"
+        default:
+            print("Error getting title content")
+            return ""
+        }
+    }
+    
+    func getSubTitle(tab: Int) -> String{
+        switch tab {
+        case 0:
+            return "Commits code-frequency for each hour per day"
+        case 1:
+            return "Commits summary for week, per days"
+        case 2:
+            return "Commits summary for each day in month"
+        default:
+            print("Error getting subtitle content")
+            return ""
+        }
+    }
+    
+    func getDescription(tab: Int) -> String{
+        switch tab {
+        case 0:
+            return "Shows the hours that have most commits usually. Best part of this is that you could see in which days and when there are best productivity. It takes summary of commits for each day in week(generally), not last week commits. In other words, it shows code frequency per each day in week. Swipe left-right for changing day, or down to refresh the data(need Internet connection)."
+        case 1:
+            return "Shows the days that have most commits per weeks. Here you can see the history of code commits. In other words, it shows how much there where code commits in this week, week before etc. Swipe left-right for changing week, or down to refresh the data(need Internet connection)."
+        case 2:
+            return "Shows the days that have most commits per months. Here you can see the history of code commits. In other words, it shows how much there where code commits in this month, month before etc. Swipe left-right for changing month, or down to refresh the data(need Internet connection)."
+        default:
+            print("Error getting title content")
+            return ""
+        }
+    }
+    
     func slideToIndex(places:Int, tab: Int){
         switch tab {
         case 0:
@@ -175,33 +221,38 @@ class MainPresenter {
     }
     
     private func fetchStatsForWeeks(){
-        self.output?.showLoading(message: "getting data...")
-        StatsService().getStatsPerWeekAndMonth() { (succeeded, message, weeks, months) -> () in
-            self.output?.hideLoading()
-            if succeeded {
-                self.weeks = weeks
-                self.months = months
-                
-                // 2. fetch for days now
-                self.fetchStatsForDays()
-            }else{
-                self.output?.showError(message: message)
-            }
-        }
+        self.output?.showLoading(message: "Getting data for months...")
+        self.mainInteractor.presenter = self as MainPresenter
+        self.mainInteractor.getStatsPerWeekAndMonth()
     }
     
     private func fetchStatsForDays(){
-        self.output?.showLoading(message: "getting data...")
-        StatsService().getStatsPerDays() { (succeeded, message, days) -> () in
-            self.output?.hideLoading()
-            if succeeded {
-                self.days = days
-                self.output?.populateView()
-            } else {
-                self.output?.showError(message: message)
-            }
-        }
+        self.output?.showLoading(message: "Getting data for days...")
+        self.mainInteractor.presenter = self as MainPresenter
+        self.mainInteractor.getStatsPerDays()
         
     }
+    
+    func statsForWeeksFetched(weeks: [WeekStatistics], months: [MonthStatistics]){
+        self.output?.hideLoading()
+        self.weeks = weeks
+        self.months = months
+        
+        // 2. fetch for days now
+        self.fetchStatsForDays()
+    }
+    
+    func statsForDaysFetched(days: [DayStatistics]){
+        self.output?.hideLoading()
+        self.days = days
+        self.output?.populateView()
+    }
+    
+    func errorHappened(message: String) {
+         self.output?.hideLoading()
+        self.output?.showError(message: message)
+    }
+    
+    
     
 }

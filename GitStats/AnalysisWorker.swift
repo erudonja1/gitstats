@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class AnalysisService {
+class AnalysisWorker {
     
     func get(inputs: [StatisticUnit], tab: Int) -> String{
         var resultString = ""

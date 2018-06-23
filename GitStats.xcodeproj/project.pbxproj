@@ -13,9 +13,8 @@
 		0404EE091CA7C67B009EF112 /* WeekStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404EE081CA7C67B009EF112 /* WeekStatistics.swift */; };
 		0404EE0B1CA7C68A009EF112 /* MonthStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404EE0A1CA7C68A009EF112 /* MonthStatistics.swift */; };
 		0404EE0E1CA7DA95009EF112 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404EE0D1CA7DA95009EF112 /* NSDateExtension.swift */; };
-		0404EE101CA7E9F1009EF112 /* ContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404EE0F1CA7E9F1009EF112 /* ContentService.swift */; };
 		0408E0411EEFF577002541E0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0408E0401EEFF577002541E0 /* API.swift */; };
-		0429B0231CE9A9F100007710 /* AnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429B0221CE9A9F100007710 /* AnalysisService.swift */; };
+		0429B0231CE9A9F100007710 /* AnalysisWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429B0221CE9A9F100007710 /* AnalysisWorker.swift */; };
 		044A60971CA48CA6001B807D /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A60961CA48CA6001B807D /* SegmentControl.swift */; };
 		04590E841C95DB210061E31B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04590E831C95DB210061E31B /* LoginViewController.swift */; };
 		0471363F1DF389CB00A76F08 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471363E1DF389CB00A76F08 /* UIColor.swift */; };
@@ -25,6 +24,9 @@
 		04951B881C955B67008188CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04951B861C955B67008188CA /* Main.storyboard */; };
 		04951B8D1C955B67008188CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04951B8B1C955B67008188CA /* LaunchScreen.storyboard */; };
 		049CBFBA1C9565F200E5FE77 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CBFB91C9565F200E5FE77 /* LoadingViewController.swift */; };
+		04A8E18C20DDF14B003D2723 /* AuthorizationDbWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8E18B20DDF14B003D2723 /* AuthorizationDbWorker.swift */; };
+		04A8E18E20DDF182003D2723 /* AuthorizationNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8E18D20DDF182003D2723 /* AuthorizationNetworkWorker.swift */; };
+		04A8E19020DE05A7003D2723 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8E18F20DE05A7003D2723 /* MainInteractor.swift */; };
 		04B3CEDC20DAC1D30060E233 /* LoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3CEDB20DAC1D30060E233 /* LoadingPresenter.swift */; };
 		04B3CEDF20DAC2B60060E233 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B3CEDE20DAC2B60060E233 /* Loading.storyboard */; };
 		04B3CEE220DAC4160060E233 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B3CEE120DAC4160060E233 /* Login.storyboard */; };
@@ -33,8 +35,8 @@
 		04B3CEE920DAD7D10060E233 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3CEE820DAD7D10060E233 /* BaseViewController.swift */; };
 		04B3CEEB20DAE6410060E233 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3CEEA20DAE6410060E233 /* MainPresenter.swift */; };
 		04D903C31CA8F5BE00E33C5C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D903C21CA8F5BE00E33C5C /* Reachability.swift */; };
-		04E5F6D91CA1C00500D979D2 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F6D81CA1C00500D979D2 /* AuthorizationService.swift */; };
-		04E5F6DB1CA1C90D00D979D2 /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F6DA1CA1C90D00D979D2 /* StatsService.swift */; };
+		04E5F6D91CA1C00500D979D2 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F6D81CA1C00500D979D2 /* AuthorizationInteractor.swift */; };
+		04E5F6DB1CA1C90D00D979D2 /* StatsNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F6DA1CA1C90D00D979D2 /* StatsNetworkWorker.swift */; };
 		C003C30025AA1883669CF1D4 /* Pods_GitStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936ED7167517880A3F7AB5F /* Pods_GitStats.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,9 +47,8 @@
 		0404EE081CA7C67B009EF112 /* WeekStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekStatistics.swift; sourceTree = "<group>"; };
 		0404EE0A1CA7C68A009EF112 /* MonthStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthStatistics.swift; sourceTree = "<group>"; };
 		0404EE0D1CA7DA95009EF112 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
-		0404EE0F1CA7E9F1009EF112 /* ContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentService.swift; sourceTree = "<group>"; };
 		0408E0401EEFF577002541E0 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		0429B0221CE9A9F100007710 /* AnalysisService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisService.swift; sourceTree = "<group>"; };
+		0429B0221CE9A9F100007710 /* AnalysisWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisWorker.swift; sourceTree = "<group>"; };
 		044A60961CA48CA6001B807D /* SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		04590E831C95DB210061E31B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0471363E1DF389CB00A76F08 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -59,6 +60,9 @@
 		04951B8C1C955B67008188CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04951B8E1C955B67008188CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049CBFB91C9565F200E5FE77 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		04A8E18B20DDF14B003D2723 /* AuthorizationDbWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationDbWorker.swift; sourceTree = "<group>"; };
+		04A8E18D20DDF182003D2723 /* AuthorizationNetworkWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationNetworkWorker.swift; sourceTree = "<group>"; };
+		04A8E18F20DE05A7003D2723 /* MainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		04B3CEDB20DAC1D30060E233 /* LoadingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPresenter.swift; sourceTree = "<group>"; };
 		04B3CEDE20DAC2B60060E233 /* Loading.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loading.storyboard; sourceTree = "<group>"; };
 		04B3CEE120DAC4160060E233 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -67,8 +71,8 @@
 		04B3CEE820DAD7D10060E233 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		04B3CEEA20DAE6410060E233 /* MainPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		04D903C21CA8F5BE00E33C5C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		04E5F6D81CA1C00500D979D2 /* AuthorizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
-		04E5F6DA1CA1C90D00D979D2 /* StatsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
+		04E5F6D81CA1C00500D979D2 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
+		04E5F6DA1CA1C90D00D979D2 /* StatsNetworkWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsNetworkWorker.swift; sourceTree = "<group>"; };
 		1936ED7167517880A3F7AB5F /* Pods_GitStats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitStats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DADC7D3B1248C9DC480D21F /* Pods-GitStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitStats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitStats/Pods-GitStats.debug.xcconfig"; sourceTree = "<group>"; };
 		6D1CF049774E16E02439F8C6 /* Pods-GitStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitStats/Pods-GitStats.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,10 +103,10 @@
 		040582711EF7B7940076D3FB /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				04B3CEF520DAE8AA0060E233 /* Router */,
-				04B3CEF120DAE8420060E233 /* Presenter */,
 				04B3CEED20DAE8080060E233 /* View */,
 				0408E03C1EEFE979002541E0 /* Interactor */,
+				04B3CEF120DAE8420060E233 /* Presenter */,
+				04B3CEF520DAE8AA0060E233 /* Router */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -118,9 +122,9 @@
 		0408E03C1EEFE979002541E0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				04E5F6DA1CA1C90D00D979D2 /* StatsService.swift */,
-				0404EE0F1CA7E9F1009EF112 /* ContentService.swift */,
-				0429B0221CE9A9F100007710 /* AnalysisService.swift */,
+				04A8E18F20DE05A7003D2723 /* MainInteractor.swift */,
+				04E5F6DA1CA1C90D00D979D2 /* StatsNetworkWorker.swift */,
+				0429B0221CE9A9F100007710 /* AnalysisWorker.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -171,6 +175,15 @@
 			path = GitStats;
 			sourceTree = "<group>";
 		};
+		04A8E18A20DDF131003D2723 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				04A8E18B20DDF14B003D2723 /* AuthorizationDbWorker.swift */,
+				04A8E18D20DDF182003D2723 /* AuthorizationNetworkWorker.swift */,
+			);
+			name = Authorization;
+			sourceTree = "<group>";
+		};
 		04B3CEDD20DAC26C0060E233 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +206,7 @@
 		04B3CEEC20DAE7060060E233 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				04A8E18A20DDF131003D2723 /* Authorization */,
 				04B3CEE820DAD7D10060E233 /* BaseViewController.swift */,
 				0408E0401EEFF577002541E0 /* API.swift */,
 				0404EE021CA7C365009EF112 /* UIService.swift */,
@@ -222,7 +236,7 @@
 		04B3CEEF20DAE82B0060E233 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				04E5F6D81CA1C00500D979D2 /* AuthorizationService.swift */,
+				04E5F6D81CA1C00500D979D2 /* AuthorizationInteractor.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -415,7 +429,7 @@
 				04B3CEE720DAD74F0060E233 /* LoginPresenter.swift in Sources */,
 				0408E0411EEFF577002541E0 /* API.swift in Sources */,
 				04B3CEE920DAD7D10060E233 /* BaseViewController.swift in Sources */,
-				04E5F6DB1CA1C90D00D979D2 /* StatsService.swift in Sources */,
+				04E5F6DB1CA1C90D00D979D2 /* StatsNetworkWorker.swift in Sources */,
 				04B3CEDC20DAC1D30060E233 /* LoadingPresenter.swift in Sources */,
 				0404EE0E1CA7DA95009EF112 /* NSDateExtension.swift in Sources */,
 				04B3CEE420DAC55A0060E233 /* MainRouter.swift in Sources */,
@@ -423,17 +437,19 @@
 				04951B851C955B67008188CA /* MainViewController.swift in Sources */,
 				0404EE0B1CA7C68A009EF112 /* MonthStatistics.swift in Sources */,
 				044A60971CA48CA6001B807D /* SegmentControl.swift in Sources */,
-				0429B0231CE9A9F100007710 /* AnalysisService.swift in Sources */,
+				0429B0231CE9A9F100007710 /* AnalysisWorker.swift in Sources */,
 				0471363F1DF389CB00A76F08 /* UIColor.swift in Sources */,
 				0404EE031CA7C365009EF112 /* UIService.swift in Sources */,
 				0404EE091CA7C67B009EF112 /* WeekStatistics.swift in Sources */,
 				0404EE051CA7C65C009EF112 /* StatisticUnit.swift in Sources */,
+				04A8E18E20DDF182003D2723 /* AuthorizationNetworkWorker.swift in Sources */,
 				049CBFBA1C9565F200E5FE77 /* LoadingViewController.swift in Sources */,
 				04B3CEEB20DAE6410060E233 /* MainPresenter.swift in Sources */,
 				04951B831C955B67008188CA /* AppDelegate.swift in Sources */,
-				04E5F6D91CA1C00500D979D2 /* AuthorizationService.swift in Sources */,
+				04E5F6D91CA1C00500D979D2 /* AuthorizationInteractor.swift in Sources */,
 				04D903C31CA8F5BE00E33C5C /* Reachability.swift in Sources */,
-				0404EE101CA7E9F1009EF112 /* ContentService.swift in Sources */,
+				04A8E18C20DDF14B003D2723 /* AuthorizationDbWorker.swift in Sources */,
+				04A8E19020DE05A7003D2723 /* MainInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

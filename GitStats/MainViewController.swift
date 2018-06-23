@@ -162,9 +162,9 @@ class MainViewController: BaseViewController, ChartViewDelegate, MainViewProtoco
         let fractionalProgress = Float(progress) / Float(totalCommits)
         self.statisticsProgress.setProgress(fractionalProgress, animated: true)
         
-        self.statisticsDescription.text = ContentService().getDescription(tab: tabIndex)
-        self.statisticsSubtitle.text = ContentService().getSubTitle(tab: tabIndex)
-        self.statisticsTitle.text = ContentService().getTitle(tab: tabIndex)
+        self.statisticsDescription.text = self.presenter.getDescription(tab: tabIndex)
+        self.statisticsSubtitle.text = self.presenter.getSubTitle(tab: tabIndex)
+        self.statisticsTitle.text = self.presenter.getTitle(tab: tabIndex)
         self.statisticsTotal.text = String(progress)
     }
     

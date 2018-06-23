@@ -51,7 +51,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate, LoginProtoco
     
     @IBAction func login(sender: UIButton) {
         if let urlText = url.text, let usernameText = username.text, let passwordText = password.text {
-            presenter.login(username: usernameText, password: passwordText, fullUrl: urlText, viewController: self)
+            presenter.login(username: usernameText, password: passwordText, fullUrl: urlText)
         }
     }
     
